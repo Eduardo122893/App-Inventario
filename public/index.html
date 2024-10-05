@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Inventario</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <nav>
+            <div class="logo-title">
+                <img src="../img/logo.png" alt="Logo" class="logo">
+                <h1>Sistema de Inventarios</h1>
+            </div>
+            <ul>
+                <li><a href="#" class="nav-link">Ver Inventarios</a></li>
+                <li><a href="formR.html" class="nav-link">Ingreso inventario</a></li>
+                <li><a href="DspInventario.html" class="nav-link">Despachar Inventario</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
+        <!-- Campo de búsqueda -->
+        <div class="search-bar">
+            <input type="text" id="searchArticulo" placeholder="Buscar por artículo..." class="search-input">
+            <button class="action-btn" id="btnBuscar">Consultar</button>
+        </div>
+
+        <h2>Inventarios Disponibles</h2>
+
+        <!-- Tabla para mostrar los inventarios -->
+        <table class="inventory-table">
+            <thead>
+                <tr>
+                    <th>Num Articulo</th>
+                    <th>Descripcion</th>
+                    <th>Cantidad</th>
+                    <th>Ubicacion</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="inventarioCuerpo">
+                <!-- Los resultados serán cargados aquí dinámicamente -->
+            </tbody>
+        </table>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 LogTrasp. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Script para manejar la búsqueda y carga de datos -->
+    <script>
+        // Función para consultar el inventario
+document.getElementById('btnBuscar').addEventListener('click', async () => {
+    const articulo = document.getElementById('searchArticulo').value;  // Obtener el valor del artículo
+    const inventarioCuerpo = document.getElementById('inventarioCuerpo');  // Donde se mostrará la tabla
+
+    // Limpiar el contenido de la tabla
+    inventarioCuerpo.innerHTML = '';
+
+    try {
+        // Construir la URL para la solicitud GET
+        let url = 'http://localhost:3000/Cproducto';
+        if (articulo) {
+            url += `?articulo=${encodeURIComponent(articulo)}`;  // Agregar el artículo como parámetro de consulta
+        }
+
+        // Realizar la solicitud al backend
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        // Obtener la respuesta como JSON
+        const data = await response.json();
+
+        if (response.ok) {
+            // Si se encontraron productos, rellenar la tabla
+            if (data.data && data.data.length > 0) {
+                data.data.forEach((item) => {
+                    const row = `<tr>
+                        <td>${item.Articulo}</td>
+                        <td>${item.Descripcion}</td>
+                        <td>${item.Cantidad}</td>
+                        <td>${item.Ubicacion}</td>
+                    
+                    </tr>`;
+                    inventarioCuerpo.innerHTML += row;
+                });
+            } else {
+                inventarioCuerpo.innerHTML = '<tr><td colspan="5">No se encontraron resultados</td></tr>';
+            }
+        } else {
+            inventarioCuerpo.innerHTML = '<tr><td colspan="5">No se encontraron resultados</td></tr>';
+        }
+    } catch (error) {
+        console.error('Error al consultar el inventario', error);
+        inventarioCuerpo.innerHTML = '<tr><td colspan="5">Error al cargar los datos</td></tr>';
+    }
+});
+
+    </script>
+
+</body>
+</html>

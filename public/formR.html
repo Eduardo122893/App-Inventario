@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Inventario - Agregar Producto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <nav>
+            <div class="logo-title">
+                <img src="img/logo.png" alt="Logo" class="logo">
+                <h1>Sistema de Inventarios</h1>
+            </div>
+            <ul>
+                <li><a href="index.html" class="nav-link">Ver Inventarios</a></li>
+                <li><a href="#" class="nav-link">Ingreso inventario</a></li>
+                <li><a href="DspInventario.html" class="nav-link">Despachar Inventario</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
+        <h2>Ingresar Ineventario</h2>
+        <form id="saveTransaction" class="inventory-form">
+
+            <div class="form-group">
+                <label for="articulo"><b>N° DE ARTICULO:</b></label>
+                <input type="text" id="articulo" name="articulo" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion"><b>DESCRIPCION:</b></label>
+                <input type="text" id="descripcion" name="descripcion" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cantidad"><b>CANTIDAD A INGRESADA:</b></label>
+                <input type="text" id="cantidad" name="cantidad" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="ubicacion"><b>UBICACION:</b></label>
+                <input type="text" id="ubicacion" name="ubicacion" class="form-input" required>
+            </div>
+
+
+            <button type="submit" class="action-btn">Agregar Producto</button>
+        </form>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 LogTrasp. Todos los derechos reservados.</p>
+    </footer>
+    <script src="js/FrontAndBack.js"></script>
+
+</body>
+</html>

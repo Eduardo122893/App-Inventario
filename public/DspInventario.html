@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despachar Inventario</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <nav>
+            <div class="logo-title">
+                <img src="../img/logo.png" alt="Logo" class="logo">
+                <h1>Sistema de Inventarios</h1>
+            </div>
+            <ul>
+                <li><a href="index.html" class="nav-link">Ver Inventarios</a></li>
+                <li><a href="formR.html" class="nav-link">Ingreso inventario</a></li>
+                <li><a href="#" class="nav-link">Despachar Inventario</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
+        <h2>Despachar Inventario</h2>
+
+        <!-- Formulario para despachar inventario -->
+        <form class="inventory-form" id="formDespacharInventario">
+            <div class="form-group">
+                <label for="numeroArticulo">Número de Artículo</label>
+                <input type="text" id="numeroArticulo" class="form-input" placeholder="Ingrese el número del artículo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cantidadDespachar">Cantidad a Despachar</label>
+                <input type="text" id="cantidadDespachar" class="form-input" placeholder="Ingrese la cantidad" required>
+            </div>
+
+            <div class="form-group">
+                <label for="ubicacionDestino">Ubicación de Destino</label>
+                <input type="text" id="ubicacionDestino" class="form-input" placeholder="Ingrese la ubicación de destino" required>
+            </div>
+
+            <button type="submit" class="action-btn">Despachar Inventario</button>
+        </form>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 LogTrasp. Todos los derechos reservados.</p>
+    </footer>
+    <script src="js/DspInventario.js"></script>
+</body>
+</html>
